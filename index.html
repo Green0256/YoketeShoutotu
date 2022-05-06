@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/article#">
+  <meta charset='utf-8' />
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <title> 避けて衝突する謎ゲー </title>
+  <meta name="author" content="Green0256">
+
+  <meta property="og:url" content="https://green0256.github.io/Shoutotu-V3/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="避けて衝突する謎のゲーム" />
+  <meta property="og:description" content="簡単操作で障害物を避けながら敵を倒してスコアを稼げ！" />
+  <meta property="og:site_name" content="Shoutotu-V3" />
+  <meta property="og:image" content="https://green0256.github.io/Shoutotu-V3/Assets/Image/og_icon.png" />
+  
+  <meta name="description" content="簡単操作で障害物を避けながら敵を倒してスコアを稼げ！">
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/gh/phinajs/phina.js@v0.2.3/build/phina.js"></script>
+  
+  <script src="./save.js"> </script>
+  <script src="./Main/function.js"> </script>
+  <script src="./Main/login.js"> </script>
+  
+  <script src="./Main/main.js"> </script>
+  
+  <script src="./Main/Player/player.js"> </script>
+  <script src="./Main/Player/shield.js"> </script>
+  
+  <script src="./Main/Player/Bullet/bullet.js"> </script>
+  <script src="./Main/Player/Bullet/normal.js"> </script>
+  <script src="./Main/Player/Bullet/super.js"> </script>
+  
+  <script src="./Main/Skill/skill.js"> </script>
+  <script src="./Main/Item/skillCutin.js"> </script>
+ 
+  <script src="./Main/Item/item.js"> </script>
+  <script src="./Main/Item/coin.js"> </script>
+  <script src="./Main/Item/slow.js"> </script>
+  <script src="./Main/Item/shield.js"> </script>
+  <script src="./Main/Item/warn.js"> </script>
+  <script src="./Main/Item/ring.js"> </script>
+ 
+  <script src="./Main/Enemy/enemy.js"> </script>
+  <script src="./Main/Enemy/normal.js"> </script>
+  <script src="./Main/Enemy/ice.js"> </script>
+  <script src="./Main/Enemy/ice_bullet.js"> </script>
+  <script src="./Main/Enemy/fire.js"> </script>
+  <script src="./Main/Enemy/block.js"> </script>
+  
+  <script src="./Main/Event/BlockWall.js"> </script>
+  <script src="./Main/Event/RingBoss.js"> </script>
+  <script src="./Main/Event/MeteorShower.js"> </script>
+  
+  <script src="./Scenes/CreditScene.js"> </script> 
+  <script src="./Scenes/SettingScene.js"> </script> 
+  <script src="./Scenes/StaticsScene.js"> </script> 
+  <script src="./Scenes/UpdateInfoScene.js"> </script> 
+  
+  <script src="./Scenes/ResultScene.js"> </script>
+  
+  <script src="./titlescene.js"> </script>
+
+  <script type="text/javascript">
+    ASSETS = {
+      image: {
+        background: "./Assets/Image/background.png",
+        player: "./Assets/Image/player.png",
+        player_shield: "./Assets/Image/player_shield.png",
+        bullet_normal: "./Assets/Image/bullet_normal.png",
+        bullet_super: "./Assets/Image/bullet_super.png",
+        enemy_normal: "./Assets/Image/enemy_normal.png",
+        enemy_ice: "./Assets/Image/enemy_ice.png",
+        enemy_iceBullet: "./Assets/Image/enemy_iceBullet.png",
+        enemy_fire: "./Assets/Image/enemy_fire.png",
+        enemy_block: "./Assets/Image/enemy_block.png",
+        item_coin: "./Assets/Image/item_coin.png",
+        item_speedDown: "./Assets/Image/item_speedDown.png",
+        item_shield: "./Assets/Image/item_shield.png",
+        item_warn: "./Assets/Image/item_warn.png",
+        item_ring: "./Assets/Image/item_ring.png",
+        rank_s: "./Assets/Image/Rank/s.png",
+        rank_a: "./Assets/Image/Rank/a.png",
+        rank_b: "./Assets/Image/Rank/b.png",
+        rank_c: "./Assets/Image/Rank/c.png",
+        backBtn: "./Assets/Image/backBtn.png",
+        frame: "./Assets/Image/frame.png",
+      },
+      sound: {
+        bullet: "./Assets/Sound/bullet.mp3",
+        coin: "./Assets/Sound/coin.mp3",
+        death: "./Assets/Sound/death.mp3",
+        warn: "./Assets/Sound/warn.mp3",
+        mainBGM: "./Assets/Sound/mainBGM.mp3",
+        gaugeUp: "./Assets/Sound/gaugeUp.mp3",
+      },
+      font: {
+        CL: "./Assets/Font/Corporate-Logo-Rounded.ttf"
+      },
+    };
+    
+    SCENES = [
+         {
+           className: 'TitleScene',
+           label: 'title',
+           nextLabel: 'main',
+         },
+
+         {
+           className: 'MainScene',
+           label: 'main',
+           nextLabel: 'result',
+         },
+         {
+           className: 'ResultScene',
+           label: 'result',
+           nextLabel: 'title',
+         },
+         {
+           className: 'CreditScene',
+           label: 'credit',
+           nextLabel: 'title',
+         },
+         {
+         className: 'StaticsScene',
+         label: 'stats',
+         nextLabel: 'title',
+         },
+         {
+         className: 'UpdateInfoScene',
+         label: 'update',
+         nextLabel: 'title',
+         },
+    ];
+    
+    /*
+     * メイン処理
+     */
+    phina.main(function() {
+      // アプリケーションを生成
+      var app = GameApp({
+         // titleScene から開始
+         startLabel: 'title',
+         title: "避けて衝突する謎ゲー V3",
+         assets: ASSETS,
+         fps: 60,
+         
+         scenes: SCENES,
+         
+      });
+    
+      app.enableStats();
+
+      // 実行
+      app.run();
+    
+    });
+    
+  </script>
+  
+</body>
+
+</html>
