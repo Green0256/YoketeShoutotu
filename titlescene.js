@@ -50,16 +50,45 @@ phina.define('TitleScene', {
     }).addChildTo(this).setPosition(200, 75).setScale(1, 1);
     
     var TitleLabel = Label({
-      text: "避けて衝突する謎ゲー",
+      text: "避けて衝突",
+      fill: "blue",
+      stroke: "white",
+      fontFamily: "CL",
+      fontSize: 45
+    }).addChildTo(this).setPosition(this.gridX.center(-10), this.gridY.center(-15)).setScale(1.5, 1.5);
+    
+    TitleLabel.tweener.moveTo(this.gridX.center(-3.5), this.gridY.center(-3.5), 450);
+    TitleLabel.tweener.moveTo(this.gridX.center(-4.5), this.gridY.center(-4.55), 200);
+    TitleLabel.tweener.moveTo(this.gridX.center(-3.5), this.gridY.center(-4.25), 200);
+
+    var TitleLabel2 = Label({
+      text: "する謎ゲー",
       fill: "orange",
       stroke: "white",
       fontFamily: "CL",
       fontSize: 45
-    }).addChildTo(this).setPosition(this.gridX.center(), this.gridY.center(-15)).setScale(1.5, 1.5);
+    }).addChildTo(this).setPosition(this.gridX.center(4), this.gridY.center(-15)).setScale(1.5, 1.5);
     
-    TitleLabel.tweener.moveTo(this.gridX.center(), this.gridY.center(-3.5), 450);
-    TitleLabel.tweener.moveTo(this.gridX.center(), this.gridY.center(-4.55), 200);
-    TitleLabel.tweener.moveTo(this.gridX.center(), this.gridY.center(-4.25), 200);
+    TitleLabel2.tweener.moveTo(this.gridX.center(4), this.gridY.center(-3.5), 450);
+    TitleLabel2.tweener.moveTo(this.gridX.center(4), this.gridY.center(-4.55), 200);
+    TitleLabel2.tweener.moveTo(this.gridX.center(4), this.gridY.center(-4.25), 200);
+
+    var projectLogo = Label({
+      text: "By 256Project",
+      fill: "yellowgreen",
+      stroke: "white",
+      fontFamily: "CL",
+      fontSize: 30,
+      backgroundColor: "rgba(0, 0, 0, 0.1)"
+    }).addChildTo(this).setPosition(this.gridX.center(4), this.gridY.center(-3));
+    projectLogo.alpha = 0;
+
+    projectLogo.tweener.fade(1,1000);
+
+    projectLogo.setInteractive(true);
+    projectLogo.onpointend = function() {
+      window.location = "https://Green0256.github.io/";
+    };
     
     var frame = Sprite("frame").addChildTo(this).setPosition(this.gridX.span(13), this.gridY.span(-1.5)).setScale(0.3, 0.3);
     var updateLabel = Label({

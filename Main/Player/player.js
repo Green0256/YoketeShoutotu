@@ -26,11 +26,20 @@ phina.define("Player", {
   },
   
   update: function(app) {
-    if (playerSelf.pointer) {
-      this.y -= this.speed;
+    if (mainScene.tapReverse == false) {
+      if (playerSelf.pointer) {
+        this.y -= this.speed;
+      } else {
+        this.y += this.speed;
+      };
     } else {
-      this.y += this.speed;
+      if (playerSelf.pointer) {
+        this.y += this.speed;
+      } else {
+        this.y -= this.speed;
+      };
     };
+    
     
     if (this.y > 950) {
       this.y = 0;

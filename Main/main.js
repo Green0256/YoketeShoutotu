@@ -30,6 +30,8 @@ phina.define("MainScene", {
     onlyEnemy = null;
     
     speedUpNextScore = 500;
+
+    this.tapReverse = false; // タッチが反転されてるかされてないかを保存する変数
     
     // 特殊イベント [リング] の管理用
     GameRing = 0;
@@ -98,9 +100,10 @@ phina.define("MainScene", {
       enemyGroup.children.clear();
       
       var data = {
-        0: 80,
+        0: 70,
         1: 10,
         2: 10,
+        3: 10,
       };
       
       r = lot(data);
@@ -117,6 +120,10 @@ phina.define("MainScene", {
         
         case 2:
           MeteorShower();
+          break;
+
+        case 3:
+          tapReverse();
           break;
       };
       
