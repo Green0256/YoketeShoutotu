@@ -94,10 +94,15 @@ phina.define('ResultScene', {
    
      this.ScoreStr = parseInt(this.ScoreDisplay).toString();
      this.Scorelength = 6 - this.ScoreStr.length
+
+    // const colors = ["orange","coral","orangered","darkorange"];
+    //  var color = Math.floor(Math.random() * (0 + colors.length));
+
+    //  this.ScoreLabel.fill = colors[color];
    };
   
    this.ScoreLabel.text = ("0" * this.Scorelength) + parseInt(this.ScoreDisplay);
-   
+
    if (this.x === false) {
      this.x = true;
      

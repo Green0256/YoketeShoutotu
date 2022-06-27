@@ -14,6 +14,7 @@ phina.define('TitleScene', {
     var vList = readJSON("./version.json");
     for (var item in vList) {
       latestVer = vList[item]["version"];
+      latestVerDate = vList[item]["date"];
     };
     
     
@@ -30,14 +31,35 @@ phina.define('TitleScene', {
     // ------
     
     
-    Label({
+    var version_label = Label({
       text: "Ver." + latestVer + " (" + item + ")",
       fontSize: 20,
       fontFamily: "CL",
       stroke: "black",
-      fill: "white"
-    }).addChildTo(this).setPosition(this.gridX.span(12.5), this.gridY.span(15.25));
-    
+      fill: "white",
+      backgroundColor: "rgba(0, 0, 0, 0.3)"
+    }).addChildTo(this).setPosition(this.gridX.span(12), this.gridY.span(15.25));
+
+    var dateLabel = Label({
+      text: latestVerDate,
+      fontSize: 20,
+      fontFamily: "CL",
+      stroke: "black",
+      fill: "white",
+      backgroundColor: "rgba(0, 0, 0, 0.2)"
+    }).addChildTo(this).setPosition(this.gridX.span(12.5), this.gridY.span(14.5));
+    dateLabel.alpha = 0;
+
+    version_label.setInteractive(true);
+
+    version_label.onpointover = function() {
+      dateLabel.alpha = 1;
+
+      window.setTimeout(function() {
+        dateLabel.alpha = 0;
+      },3000);
+    };
+
     Sprite("item_coin").addChildTo(this).setPosition(75,75).setScale(0.15, 0.15);
     
     this.DisplayPlayerCoin = 0;
@@ -98,6 +120,16 @@ phina.define('TitleScene', {
       fontSize: 25,
       fontFamily: "CL",
     }).addChildTo(this).setPosition(this.gridX.span(13), this.gridY.span(-1.5));
+
+    frame.onpointover = function() { // ホバー時に
+      frame.y -= 15;
+      updateLabel.y -= 15;
+    };
+
+    frame.onpointout = function() { // ホバーはずれたら
+      frame.y += 15;
+      updateLabel.y += 15;
+    };
     
     frame.tweener.moveTo(this.gridX.span(13), this.gridY.span(1.5), 500)
     updateLabel.tweener.moveTo(this.gridX.span(13), this.gridY.span(1.5), 500)
@@ -113,7 +145,7 @@ phina.define('TitleScene', {
       frame.tweener.fade(1, 300).play();
     };
     
-    Label({
+    var mode_normal = Label({
       text: "通常モード",
       fill: "white",
       stroke: "orange",
@@ -126,6 +158,14 @@ phina.define('TitleScene', {
     df_btn.setInteractive(true);
     
     df_btn.tweener.moveTo(this.gridX.center(-5), this.gridY.center(), 500);
+
+    df_btn.onpointover = function() { // ホバー時に
+      mode_normal.x += 100;
+    };
+
+    df_btn.onpointout = function() { // ホバーはずれたら
+      mode_normal.x -= 100;
+    };
     
     df_btn.onpointstart = function() {
       df_btn.tweener.fade(0.25, 300).play();
@@ -137,7 +177,7 @@ phina.define('TitleScene', {
       df_btn.tweener.fade(1, 300).play();
     };
     
-    Label({
+    setting_btn = Label({
       text: "設定",
       fill: "white",
       stroke: "orange",
@@ -148,6 +188,14 @@ phina.define('TitleScene', {
     st_btn.setInteractive(true);
     
     st_btn.tweener.moveTo(this.gridX.center(-5), this.gridY.center(2), 750);
+
+    st_btn.onpointover = function() { // ホバー時に
+      setting_btn.x += 100;
+    };
+
+    st_btn.onpointout = function() { // ホバーはずれたら
+      setting_btn.x -= 100;
+    };
     
     st_btn.onpointstart = function() {
       st_btn.tweener.fade(0.25, 300).play();
@@ -159,7 +207,7 @@ phina.define('TitleScene', {
       st_btn.tweener.fade(1, 300).play();
     };
     
-    Label({
+    stat_label = Label({
       text: "統計",
       fill: "white",
       stroke: "orange",
@@ -170,6 +218,14 @@ phina.define('TitleScene', {
     stat_btn.setInteractive(true);
     
     stat_btn.tweener.moveTo(this.gridX.center(-5), this.gridY.center(4), 1000);
+
+    stat_btn.onpointover = function() { // ホバー時に
+      stat_label.x += 100;
+    };
+
+    stat_btn.onpointout = function() { // ホバーはずれたら
+      stat_label.x -= 100;
+    };
     
     stat_btn.onpointstart = function() {
       stat_btn.tweener.fade(0.25, 300).play();
@@ -181,7 +237,7 @@ phina.define('TitleScene', {
       stat_btn.tweener.fade(1, 300).play();
     };
     
-    Label({
+    credit_btn = Label({
       text: "クレジット",
       fill: "white",
       stroke: "orange",
@@ -192,6 +248,14 @@ phina.define('TitleScene', {
     cr_btn.setInteractive(true);
     
     cr_btn.tweener.moveTo(this.gridX.center(-5), this.gridY.center(6), 1250);
+
+    cr_btn.onpointover = function() { // ホバー時に
+      credit_btn.x += 100;
+    };
+
+    cr_btn.onpointout = function() { // ホバーはずれたら
+      credit_btn.x -= 100;
+    };
     
     cr_btn.onpointstart = function() {
       cr_btn.tweener.fade(0.25, 300).play();

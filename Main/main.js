@@ -79,7 +79,6 @@ phina.define("MainScene", {
       fontFamily: "CL",
       fontSize: 42,
     }).addChildTo(this).setPosition(260, 120);
-    
   },
   
   update: function(app) {
