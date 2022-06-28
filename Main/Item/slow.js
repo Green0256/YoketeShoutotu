@@ -9,8 +9,8 @@ phina.define("speedDown", {
     this.getCode = function() {
       scrollSpeed -= 1;
       
-      if (scrollSpeed <= 2) {
-        scrollSpeed = 3;
+      if (scrollSpeed < 4) {
+        scrollSpeed = 4;
       };
     };
 

@@ -60,14 +60,14 @@ phina.define('ResultScene', {
       fontFamily: "CL"
     }).addChildTo(this).setPosition(-300, this.gridY.span(6));
     
-    this.backBtn = Sprite("backBtn").addChildTo(this).setPosition(this.gridX.center(), this.gridY.span(20));
+    this.backBtn = Sprite("backBtn").addChildTo(this).setPosition(this.gridX.center(-5), this.gridY.span(20)).setScale(0.5,0.5);
     this.backLabel = Label({
       text: "BACK",
       stroke: "skyblue",
       fill: "white",
-      fontSize: 100,
+      fontSize: 50,
       fontFamily: "CL",
-    }).addChildTo(this).setPosition(this.gridX.center(), this.gridY.span(20))
+    }).addChildTo(this).setPosition(this.gridX.center(-5), this.gridY.span(20))
     
     var self = this;
     
@@ -80,6 +80,29 @@ phina.define('ResultScene', {
       self.backLabel.tweener.fade(1, 300).play();
       window.setTimeout(function() {
         self.exit();
+      },500);
+    };
+
+    this.retryBtn = Sprite("backBtn").addChildTo(this).setPosition(this.gridX.center(5), this.gridY.span(20)).setScale(0.5,0.5);
+    this.retryLabel = Label({
+      text: "Retry",
+      stroke: "skyblue",
+      fill: "white",
+      fontSize: 50,
+      fontFamily: "CL",
+    }).addChildTo(this).setPosition(this.gridX.center(5), this.gridY.span(20))
+    
+    var self = this;
+    
+    this.retryBtn.setInteractive(true);
+    this.retryBtn.onpointstart = function() {
+      self.retryBtn.tweener.fade(0.25, 300).play();
+      self.retryLabel.tweener.fade(0.25, 300).play();
+      
+      self.retryBtn.tweener.fade(1, 300).play();
+      self.retryLabel.tweener.fade(1, 300).play();
+      window.setTimeout(function() {
+        self.exit("main");
       },500);
     };
   },
@@ -172,10 +195,16 @@ phina.define('ResultScene', {
                               .moveTo(this.gridX.center(-3), this.gridY.span(6.25));
                               
      this.backBtn.tweener.wait(3750)
-                         .moveTo(this.gridX.center(), this.gridY.span(13.5));
+                         .moveTo(this.gridX.center(-4), this.gridY.span(13.5));
                          
      this.backLabel.tweener.wait(3750)
-                         .moveTo(this.gridX.center(), this.gridY.span(13.5));
+                         .moveTo(this.gridX.center(-4), this.gridY.span(13.5));
+
+     this.retryBtn.tweener.wait(3750)
+                         .moveTo(this.gridX.center(4), this.gridY.span(13.5));
+                         
+     this.retryLabel.tweener.wait(3750)
+                         .moveTo(this.gridX.center(4), this.gridY.span(13.5));
    };
   },
 });

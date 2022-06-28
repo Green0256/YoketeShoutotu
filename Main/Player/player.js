@@ -30,7 +30,10 @@ phina.define("Player", {
       if (playerSelf.pointer) {
         this.y -= this.speed;
       } else {
-        this.y += this.speed;
+        
+        if (mainScene.hovering == false) {
+          this.y += this.speed;
+        };    
       };
     } else {
       if (playerSelf.pointer) {
@@ -39,8 +42,7 @@ phina.define("Player", {
         this.y -= this.speed;
       };
     };
-    
-    
+
     if (this.y > 950) {
       this.y = 0;
     } else if (this.y < 0) {

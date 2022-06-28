@@ -96,7 +96,7 @@ phina.define('TitleScene', {
     TitleLabel2.tweener.moveTo(this.gridX.center(4), this.gridY.center(-4.25), 200);
 
     var projectLogo = Label({
-      text: "By 256Project",
+      text: "256Project",
       fill: "yellowgreen",
       stroke: "white",
       fontFamily: "CL",
@@ -178,7 +178,7 @@ phina.define('TitleScene', {
     };
     
     setting_btn = Label({
-      text: "設定",
+      text: "準備中",
       fill: "white",
       stroke: "orange",
       fontFamily: "CL"
@@ -200,9 +200,9 @@ phina.define('TitleScene', {
     st_btn.onpointstart = function() {
       st_btn.tweener.fade(0.25, 300).play();
       
-      window.setTimeout(function() {
-        self.exit();
-      }, 500);
+      // window.setTimeout(function() {
+      //   self.exit();
+      // }, 500);
       
       st_btn.tweener.fade(1, 300).play();
     };
