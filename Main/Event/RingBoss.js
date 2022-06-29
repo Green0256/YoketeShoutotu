@@ -6,6 +6,7 @@ function RingBoss() {
   itemGenFrame = 30;
   
   skillCutin("リングを集めろ！ (タイム: 10秒)").addChildTo(itemGroup).setPosition(750,150);
+  timeCountDown = 10;
   
   powerTLabel = Label({
     text: "POWER : ",
