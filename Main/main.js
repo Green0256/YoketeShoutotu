@@ -31,6 +31,17 @@ phina.define("MainScene", {
     
     speedUpNextScore = 500;
 
+    timeCountDown = 0;
+
+    countDownLabel = Label({
+      text: "-",
+      fill: "forestgreen",
+      stroke: "white",
+      fontFamily: "CL",
+      fontSize: 75,
+    }).addChildTo(this).setPosition(500,50);
+    countDownLabel.alpha = 0;
+
     this.tapReverse = false; // タッチが反転されてるかされてないかを保存する変数
     this.hovering = false;
     
@@ -83,6 +94,15 @@ phina.define("MainScene", {
   },
   
   update: function(app) {
+    if (timeCountDown != 0) {
+      if (app.frame % 60 == 0) {
+        timeCountDown--;
+      };
+      countDownLabel.text = timeCountDown;
+      countDownLabel.alpha = 1;
+    } else {
+      countDownLabel.alpha = 0;
+    };
    
     if (app.frame % enemyGenFrame == 0) {
       enemyGen();

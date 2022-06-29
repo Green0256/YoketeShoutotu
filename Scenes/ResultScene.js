@@ -37,6 +37,24 @@ phina.define('ResultScene', {
       fontSize: 75,
       fontFamily: "CL"
     }).addChildTo(this).setPosition(this.gridX.center(), this.gridY.span(2.25));
+
+    this.newLabel = Label({
+      text: "New!",
+      stroke: "red",
+      fill: "white",
+      fontSize: 40,
+      fontFamily: "CL"
+    }).addChildTo(this).setPosition(this.gridX.center(4), this.gridY.span(5));
+    this.newLabel.alpha = 0;
+
+    this.HighScoreDisplay = 0;
+    this.highScoreLabel = Label({
+      text: "HighScore: ",
+      stroke: "red",
+      fill: "white",
+      fontSize: 25,
+      fontFamily: "CL"
+    }).addChildTo(this).setPosition(this.gridX.center(3), this.gridY.span(6.25));
     
     this.rankLabel = Label({
       text: ".",
@@ -62,7 +80,7 @@ phina.define('ResultScene', {
     
     this.backBtn = Sprite("backBtn").addChildTo(this).setPosition(this.gridX.center(-5), this.gridY.span(20)).setScale(0.5,0.5);
     this.backLabel = Label({
-      text: "BACK",
+      text: "Back",
       stroke: "skyblue",
       fill: "white",
       fontSize: 50,
@@ -73,6 +91,11 @@ phina.define('ResultScene', {
     
     this.backBtn.setInteractive(true);
     this.backBtn.onpointstart = function() {
+      if (score > highScore) {
+        highScore = score;
+        datasave();
+      };
+
       self.backBtn.tweener.fade(0.25, 300).play();
       self.backLabel.tweener.fade(0.25, 300).play();
       
@@ -96,6 +119,12 @@ phina.define('ResultScene', {
     
     this.retryBtn.setInteractive(true);
     this.retryBtn.onpointstart = function() {
+
+      if (score > highScore) {
+        highScore = score;
+        datasave();
+      };
+
       self.retryBtn.tweener.fade(0.25, 300).play();
       self.retryLabel.tweener.fade(0.25, 300).play();
       
@@ -110,9 +139,12 @@ phina.define('ResultScene', {
   update: function(app) {
    if (app.frame % 5 == 0 && this.ScoreDisplay < score) {
      this.ScoreDisplay += score / 50;
+     this.HighScoreDisplay += highScore / 50;
+     this.highScoreLabel.text = "HighScore: " + parseInt(this.HighScoreDisplay);
      
      if (this.ScoreDisplay > score) {
        this.ScoreDisplay = score;
+       this.highScoreLabel.text = "HighScore: " + highScore;
      };
    
      this.ScoreStr = parseInt(this.ScoreDisplay).toString();
@@ -205,6 +237,10 @@ phina.define('ResultScene', {
                          
      this.retryLabel.tweener.wait(3750)
                          .moveTo(this.gridX.center(4), this.gridY.span(13.5));
+
+     if (score > highScore) {
+      this.newLabel.alpha = 1;
+     };
    };
   },
 });
