@@ -21,6 +21,10 @@ function enemyGen() {
   };
 
   switch (r) {
+    case -1:
+      // 敵出現しないやつ
+      break;
+      
     case 0:
       Normal().addChildTo(enemyGroup).setPosition(xr, yr);
       break;
