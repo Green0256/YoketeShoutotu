@@ -5,6 +5,8 @@ function hovering() {
   skillCutin("ホバリング！").addChildTo(itemGroup).setPosition(750,100);
   skillCutin("操作は上移動のみ！").addChildTo(itemGroup).setPosition(750,150);
 
+  onlyEnemy = -1;
+
   mainScene.hovering = true;
 
   var r = fRange(1,4,shuffle=true);
@@ -49,12 +51,14 @@ function hovering() {
 
     var t = 5500;
     if (scrollSpeed * 1000 < 5000) {
-        t = 6500;
+        t = 6000;
     };
 
     window.setTimeout(function() {
-        mainScene.hovering = false;
-        score += 350;
+      onlyEnemy = null;
+
+      mainScene.hovering = false;
+      score += 350;
     }, t);
   }, 1500);
 };

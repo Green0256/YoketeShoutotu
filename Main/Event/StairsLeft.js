@@ -7,6 +7,8 @@ function StairsLeft() {
     skillCutin("上でワープして回避しよう！").addChildTo(itemGroup).setPosition(750,150);
         
     score += 100;
+
+    onlyEnemy = -1;
     
     window.setTimeout(function() {
       for (var i = 0; i < 10; i++) {      
@@ -15,4 +17,8 @@ function StairsLeft() {
         setX += 100;
       };
     }, 1500);
+
+    window.setTimeout(function() {
+      onlyEnemy = null;
+    }, 3500);
   };
