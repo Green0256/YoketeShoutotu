@@ -120,13 +120,15 @@ phina.define("MainScene", {
       enemyGroup.children.clear();
       
       var data = {
-        0: 30,
+        0: 10,
         1: 10,
         2: 10,
         3: 10,
-        4: 12.5,
-        5: 12.5,
-        6: 15
+        4: 10,
+        5: 10,
+        6: 15,
+        7: 15,
+        8: 10
       };
       
       r = lot(data);
@@ -159,6 +161,14 @@ phina.define("MainScene", {
         
         case 6:
           hovering();
+          break;
+        
+        case 7: 
+          blockWallPlus();
+          break;
+
+        case 8: 
+          blockWallPlus();
           break;
       };
       
