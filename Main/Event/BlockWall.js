@@ -4,7 +4,7 @@ function blockWall() {
   SoundManager.play('warn');
   
   var r = fRange(1,4,shuffle=true)
-  warnArray = [];
+  var warnArray = [];
   
   for (var i = 0; i < 10; i++) {
     var obj = Warn(sound=false).addChildTo(itemGroup).setPosition(600, setY);
