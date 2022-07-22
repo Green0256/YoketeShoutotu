@@ -6,6 +6,8 @@ phina.define('ResultScene', {
   init: function(params) {
     this.superInit(params);
     this.backgroundColor = "midnightblue";
+
+    gtag('event', 'sendScore', {'event_category': 'YoketeShoutotu','event_label': '','value': score});
     
     this.ScoreDisplay = 0;
     this.Scorelength = 6;
@@ -130,6 +132,9 @@ phina.define('ResultScene', {
       
       self.retryBtn.tweener.fade(1, 300).play();
       self.retryLabel.tweener.fade(1, 300).play();
+
+      gtag('event', 'retry', {'event_category': 'YoketeShoutotu','event_label': '','value': '1'});
+
       window.setTimeout(function() {
         self.exit("main");
       },500);
