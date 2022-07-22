@@ -168,6 +168,8 @@ phina.define('TitleScene', {
     };
     
     df_btn.onpointstart = function() {
+      gtag('event', 'play', {'event_category': 'YoketeShoutotu','event_label': '','value': '1'});
+
       df_btn.tweener.fade(0.25, 300).play();
       
       window.setTimeout(function() {
